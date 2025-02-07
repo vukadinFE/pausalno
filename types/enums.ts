@@ -1,0 +1,13 @@
+export enum FeeType {
+  "AKONTACIJA_POREZA" = "AKONTACIJA_POREZA",
+  "NEZAPOSLENOST" = "NEZAPOSLENOST",
+  "ZDRAVSTVO" = "ZDRAVSTVO",
+  "PIO" = "PIO",
+}
+
+export enum Fee {
+  "AKONTACIJA_POREZA" = 0.1,
+  "NEZAPOSLENOST" = 0.0075,
+  "ZDRAVSTVO" = 0.103,
+  "PIO" = 0.24,
+}
