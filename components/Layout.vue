@@ -9,11 +9,9 @@ defineProps<Props>();
 </script>
 
 <template>
-  <UApp>
-    <Header />
-    <div :class="wrapperClass">
-      <slot />
-    </div>
-    <Footer />
-  </UApp>
+  <Header />
+  <div :class="wrapperClass">
+    <slot />
+  </div>
+  <Footer />
 </template>

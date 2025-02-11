@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
 import useLocalForage from "~/composable/useLocalForage";
-import useThemeColor from "~/composable/useThemeColor";
 import { DATA_PATH } from "~/consts";
 import type { TData } from "~/types/data";
 
@@ -57,12 +56,6 @@ const items = computed<NavigationMenuItem[] | NavigationMenuItem[][]>(() => {
     ],
   ];
 });
-
-const { isDark, color } = useThemeColor();
-
-const logoPath = computed(() =>
-  isDark.value ? "/logo-white.svg" : "/logo.svg"
-);
 </script>
 
 <template>
@@ -72,9 +65,9 @@ const logoPath = computed(() =>
     <UContainer>
       <div class="flex items-center py-4">
         <NuxtLink to="/">
-          <img :src="logoPath" class="w-[100px] h-auto block" alt="" />
+          <img src="/logo-white.svg" class="w-[100px] h-auto block" alt="" />
         </NuxtLink>
-        <UNavigationMenu :class="color" :items="items" class="w-full">
+        <UNavigationMenu :items="items" class="w-full">
           <template #highlighted-label="{ item }">
             <span class="hidden md:inline">
               {{ item.label }}

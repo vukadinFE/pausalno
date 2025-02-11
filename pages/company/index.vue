@@ -4,7 +4,7 @@ import localforage from "localforage";
 import { DATA_PATH, STATE_PATH } from "~/consts";
 import type { TData } from "~/types/data";
 
-useSeoMeta({
+useServerSeoMeta({
   title: "Моје фирме - IPS за паушалце",
   description:
     "Додај или уклони фирму за коју генеришеш IPS кодове за плаћање паушалног пореза",

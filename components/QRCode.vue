@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import QRCodeStyling, { type Options } from "qr-code-styling";
-import useThemeColor from "~/composable/useThemeColor";
 
 type Props = {
   data: string;
@@ -16,18 +15,14 @@ const color = toRef(props, "color");
 
 const qrCodeRef = useTemplateRef("qr-code");
 
-const { isDark } = useThemeColor();
-
-const codeColor = computed(
-  () => color.value || (isDark.value ? "#d1d5dc" : "#1e2939")
-);
+const codeColor = computed(() => color.value || "#d1d5dc");
 
 const options = computed<Options>(() => ({
   width: 200,
   height: 200,
   type: "svg",
   data: data.value,
-  image: logoUrl.value || (isDark.value ? "/logo-white.svg" : "/logo.svg"),
+  image: logoUrl.value || "/logo-white.svg",
   imageOptions: {
     crossOrigin: "anonymous",
     hideBackgroundDots: true,

@@ -12,7 +12,7 @@ const route = useRoute();
 
 const slug = computed(() => route.params.slug as string);
 
-useSeoMeta({
+useServerSeoMeta({
   title: `${slug.value} - IPS за паушалце`,
   description: "Плати паушални порез за сваки месец у години",
   ogImage: "https://pausalno.rs/ips-za-pausalce.png",

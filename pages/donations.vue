@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-useSeoMeta({
+useServerSeoMeta({
   title: `Донације - IPS за паушалце`,
   description:
     "Подржите хуманитарне организације – Донацијом помажете онима којима је најпотребније!",

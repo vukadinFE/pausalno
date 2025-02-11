@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { object, string, number } from "yup";
 import type { Form, FormSubmitEvent } from "@nuxt/ui";
-import useThemeColor from "~/composable/useThemeColor";
 import axios from "axios";
 import useLocalForage from "~/composable/useLocalForage";
 import type { TData } from "~/types/data";
@@ -233,8 +232,6 @@ const onPastModel = (e: ClipboardEvent) => {
   (e.target as HTMLInputElement).dispatchEvent(new Event("input"));
 };
 
-const { color } = useThemeColor();
-
 defineExpose({
   submit: () => form.value?.submit(),
   submitting: submitting,
@@ -246,135 +243,136 @@ defineExpose({
     ref="form"
     :schema="schema"
     :state="state"
-    class="space-y-4"
     @submit="onSubmit"
     @error="console.log"
   >
-    <UFormField :class="color" name="osnovica" required>
-      <template #label>
-        Паушално утврђена <b>основица</b> за текућу годину
-      </template>
-      <UInput
-        class="w-full &input:pl-4"
-        type="number"
-        step="0.01"
-        v-model="state.osnovica"
-        placeholder="90000.00"
-        min="0"
-      >
-        <template #trailing> RSD </template>
-      </UInput>
-    </UFormField>
+    <div class="flex flex-col gap-4">
+      <UFormField name="osnovica" required>
+        <template #label>
+          Паушално утврђена <b>основица</b> за текућу годину
+        </template>
+        <UInput
+          class="w-full &input:pl-4"
+          type="number"
+          step="0.01"
+          v-model="state.osnovica"
+          placeholder="90000.00"
+          min="0"
+        >
+          <template #trailing> RSD </template>
+        </UInput>
+      </UFormField>
 
-    <UFormField :class="color" name="firma" required>
-      <template #label> Име агенције/фирме </template>
-      <UInput placeholder="Моја фирма" v-model="state.firma" class="w-full" />
-    </UFormField>
+      <UFormField name="firma" required>
+        <template #label> Име агенције/фирме </template>
+        <UInput placeholder="Моја фирма" v-model="state.firma" class="w-full" />
+      </UFormField>
 
-    <UFormField :class="color" name="akontacijaRacun">
-      <template #label> Рачун за <b>аконтацију пореза</b> </template>
-      <UInput
-        @paste="onPasteAccount"
-        :placeholder="accountPlaceholder"
-        v-model="state.akontacijaRacun"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="akontacijaRacun">
+        <template #label> Рачун за <b>аконтацију пореза</b> </template>
+        <UInput
+          @paste="onPasteAccount"
+          :placeholder="accountPlaceholder"
+          v-model="state.akontacijaRacun"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="akontacijaBroj" required>
-      <template #label>
-        Модел и позив на број за <b>аконтацију пореза</b>
-      </template>
-      <UInput
-        @paste="onPastModel"
-        :placeholder="modelPlaceholder"
-        v-model="state.akontacijaBroj"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="akontacijaBroj" required>
+        <template #label>
+          Модел и позив на број за <b>аконтацију пореза</b>
+        </template>
+        <UInput
+          @paste="onPastModel"
+          :placeholder="modelPlaceholder"
+          v-model="state.akontacijaBroj"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="zdravstvoRacun" required>
-      <template #label> Рачун за <b>здравствено осигурање</b> </template>
-      <UInput
-        @paste="onPasteAccount"
-        :placeholder="accountPlaceholder"
-        v-model="state.zdravstvoRacun"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="zdravstvoRacun" required>
+        <template #label> Рачун за <b>здравствено осигурање</b> </template>
+        <UInput
+          @paste="onPasteAccount"
+          :placeholder="accountPlaceholder"
+          v-model="state.zdravstvoRacun"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="zdravstvoBroj" required>
-      <template #label>
-        Модел и позив на број за <b>здравствено осигурање</b>
-      </template>
-      <UInput
-        @paste="onPastModel"
-        :placeholder="modelPlaceholder"
-        v-model="state.zdravstvoBroj"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="zdravstvoBroj" required>
+        <template #label>
+          Модел и позив на број за <b>здравствено осигурање</b>
+        </template>
+        <UInput
+          @paste="onPastModel"
+          :placeholder="modelPlaceholder"
+          v-model="state.zdravstvoBroj"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="pioRacun" required>
-      <template #label>
-        <div class="inline-flex items-center gap-1">
-          Рачун за <b>ПИО</b>
-          <UTooltip text="Пензионо и здравствено осигурање">
-            <UIcon name="i-lucide-info" />
-          </UTooltip>
-        </div>
-      </template>
-      <UInput
-        @paste="onPasteAccount"
-        :placeholder="accountPlaceholder"
-        v-model="state.pioRacun"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="pioRacun" required>
+        <template #label>
+          <div class="inline-flex items-center gap-1">
+            Рачун за <b>ПИО</b>
+            <UTooltip text="Пензионо и здравствено осигурање">
+              <UIcon name="i-lucide-info" />
+            </UTooltip>
+          </div>
+        </template>
+        <UInput
+          @paste="onPasteAccount"
+          :placeholder="accountPlaceholder"
+          v-model="state.pioRacun"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="pioBroj" required>
-      <template #label>
-        <div class="inline-flex items-center gap-1">
-          Модел и позив на број за
-          <b>ПИО</b>
-          <UTooltip text="Пензионо и здравствено осигурање">
-            <UIcon name="i-lucide-info" />
-          </UTooltip>
-        </div>
-      </template>
-      <UInput
-        @paste="onPastModel"
-        :placeholder="modelPlaceholder"
-        v-model="state.pioBroj"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="pioBroj" required>
+        <template #label>
+          <div class="inline-flex items-center gap-1">
+            Модел и позив на број за
+            <b>ПИО</b>
+            <UTooltip text="Пензионо и здравствено осигурање">
+              <UIcon name="i-lucide-info" />
+            </UTooltip>
+          </div>
+        </template>
+        <UInput
+          @paste="onPastModel"
+          :placeholder="modelPlaceholder"
+          v-model="state.pioBroj"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="nezaposlenostRacun" required>
-      <template #label> Рачун за <b>доприносе за незапосленост</b> </template>
-      <UInput
-        @paste="onPasteAccount"
-        :placeholder="accountPlaceholder"
-        v-model="state.nezaposlenostRacun"
-        class="w-full"
-      />
-    </UFormField>
+      <UFormField name="nezaposlenostRacun" required>
+        <template #label> Рачун за <b>доприносе за незапосленост</b> </template>
+        <UInput
+          @paste="onPasteAccount"
+          :placeholder="accountPlaceholder"
+          v-model="state.nezaposlenostRacun"
+          class="w-full"
+        />
+      </UFormField>
 
-    <UFormField :class="color" name="nezaposlenostBroj" required>
-      <template #label>
-        Модел и позив на број за <b>доприносе за незапосленост</b>
-      </template>
-      <UInput
-        @paste="onPastModel"
-        :placeholder="modelPlaceholder"
-        v-model="state.nezaposlenostBroj"
-        class="w-full"
-      />
-    </UFormField>
-    <div class="flex justify-end" v-if="!hideButton">
-      <UButton type="submit" trailing-icon="i-lucide-qr-code">
-        Генериши
-      </UButton>
+      <UFormField name="nezaposlenostBroj" required>
+        <template #label>
+          Модел и позив на број за <b>доприносе за незапосленост</b>
+        </template>
+        <UInput
+          @paste="onPastModel"
+          :placeholder="modelPlaceholder"
+          v-model="state.nezaposlenostBroj"
+          class="w-full"
+        />
+      </UFormField>
+      <div class="flex justify-end" v-if="!hideButton">
+        <UButton type="submit" trailing-icon="i-lucide-qr-code">
+          Генериши
+        </UButton>
+      </div>
     </div>
   </UForm>
 </template>

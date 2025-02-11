@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { UButton } from "#components";
-import useThemeColor from "~/composable/useThemeColor";
 
 definePageMeta({
   layout: "home",
@@ -8,9 +7,7 @@ definePageMeta({
 
 const generateModalOpen = ref(false);
 
-const { isDark } = useThemeColor();
-
-useSeoMeta({
+useServerSeoMeta({
   title: "IPS за паушалце",
   description:
     "Генериши QR кодове за плаћање паушалног пореза за сваки месец у години",
@@ -92,11 +89,7 @@ useSeoMeta({
           <div
             class="shadow-2xl shadow-(--ui-bg)/15 dark:shadow-white/15 max-w-[400px] rounded"
           >
-            <img
-              :src="isDark ? '/how.png' : '/how-light.png'"
-              alt="Како функционише?"
-              class="rounded"
-            />
+            <img src="/how.png" alt="Како функционише?" class="rounded" />
           </div>
         </div>
       </section>
@@ -123,11 +116,7 @@ useSeoMeta({
           <div
             class="shadow-2xl shadow-(--ui-bg)/15 dark:shadow-white/15 max-w-[500px] rounded"
           >
-            <img
-              :src="isDark ? '/isolate.png' : '/isolate-white.png'"
-              alt="Како функционише?"
-              class="rounded"
-            />
+            <img src="/isolate.png" alt="Како функционише?" class="rounded" />
           </div>
         </div>
       </section>
@@ -166,7 +155,7 @@ useSeoMeta({
           </div>
           <div class="max-w-[400px] rounded">
             <img
-              :src="isDark ? '/beforeAfter.png' : '/beforeAfter.png'"
+              src="/beforeAfter.png"
               alt="Како функционише?"
               class="rounded"
             />
