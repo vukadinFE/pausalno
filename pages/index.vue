@@ -164,9 +164,7 @@ useSeoMeta({
               </p>
             </div>
           </div>
-          <div
-            class="shadow-2xl shadow-(--ui-bg)/15 dark:shadow-white/15 max-w-[400px] rounded"
-          >
+          <div class="max-w-[400px] rounded">
             <img
               :src="isDark ? '/beforeAfter.png' : '/beforeAfter.png'"
               alt="Како функционише?"

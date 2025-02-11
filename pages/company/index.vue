@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { UContainer } from "#components";
 import localforage from "localforage";
-import { DATA_PATH } from "~/consts";
+import { DATA_PATH, STATE_PATH } from "~/consts";
 import type { TData } from "~/types/data";
 
 const { data } = useAsyncData(
@@ -27,7 +27,14 @@ const onDelete = async (name: string) => {
   items.value = items.value.filter((item) => item.firma !== name);
   await localforage.removeItem(dataStorage(name));
 
-  await localforage.iterate((value, key) => {});
+  const keys = await localforage.keys();
+
+  for (let item in keys) {
+    const key = keys[item];
+    if (key.startsWith(`${STATE_PATH}/${companyName(name)}`)) {
+      await localforage.removeItem(key);
+    }
+  }
 };
 </script>
 
