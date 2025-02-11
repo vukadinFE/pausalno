@@ -51,7 +51,7 @@ const items = computed<NavigationMenuItem[] | NavigationMenuItem[][]>(() => {
       {
         label: "",
         icon: "i-simple-icons-github",
-        to: "https://github.com/nuxt/ui",
+        to: "https://github.com/vukadinFE/pausalno",
         target: "_blank",
       },
     ],
