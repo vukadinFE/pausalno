@@ -4,6 +4,13 @@ import localforage from "localforage";
 import { DATA_PATH, STATE_PATH } from "~/consts";
 import type { TData } from "~/types/data";
 
+useSeoMeta({
+  title: "Моје фирме - IPS за паушалце",
+  description:
+    "Додај или уклони фирму за коју генеришеш IPS кодове за плаћање паушалног пореза",
+  ogImage: "https://pausalno.rs/ips-za-pausalce.png",
+});
+
 const { data } = useAsyncData(
   async () => {
     const companies: TData[] = [];

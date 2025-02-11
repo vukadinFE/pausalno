@@ -1,4 +1,11 @@
 <script lang="ts" setup>
+useSeoMeta({
+  title: `Донације - IPS за паушалце`,
+  description:
+    "Подржите хуманитарне организације – Донацијом помажете онима којима је најпотребније!",
+  ogImage: "https://pausalno.rs/ips-za-pausalce.png",
+});
+
 export type Donation = {
   title: string;
   name: string;
