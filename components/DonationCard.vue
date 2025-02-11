@@ -13,10 +13,13 @@ defineEmits<Emits>();
 <template>
   <UCard class="dark:ring-gray-800 dark:bg-gray-900 text-center">
     <div
-      class="min-h-[200px] flex items-center justify-center rounded-lg bg-white"
+      class="h-[200px] flex items-center justify-center rounded-lg bg-white"
       :class="logoClass"
     >
-      <img :src="logo" class="max-w-full max-h-full block rounded-lg" />
+      <img
+        :src="logo"
+        class="max-w-full max-h-full object-contain block rounded-lg"
+      />
     </div>
     <div class="flex gap-2 flex-wrap my-5 justify-center">
       <UButton

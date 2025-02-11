@@ -19,7 +19,7 @@ useServerSeoMeta({
   <div
     class="min-h-[100dvh] flex items-center justify-center overflow-hidden fency-bg before:!bg-[50%_70%]"
   >
-    <UContainer class="pb-10">
+    <UContainer class="pb-10 pt-(--header-height)">
       <div class="text-center mx-auto">
         <h1
           class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-7xl"

@@ -247,7 +247,7 @@ defineExpose({
     @error="console.log"
   >
     <div class="flex flex-col gap-4">
-      <UFormField name="osnovica" required>
+      <UFormField class="text-[13px] sm:text-sm" name="osnovica" required>
         <template #label>
           Паушално утврђена <b>основица</b> за текућу годину
         </template>
@@ -263,12 +263,12 @@ defineExpose({
         </UInput>
       </UFormField>
 
-      <UFormField name="firma" required>
+      <UFormField class="text-[13px] sm:text-sm" name="firma" required>
         <template #label> Име агенције/фирме </template>
         <UInput placeholder="Моја фирма" v-model="state.firma" class="w-full" />
       </UFormField>
 
-      <UFormField name="akontacijaRacun">
+      <UFormField class="text-[13px] sm:text-sm" name="akontacijaRacun">
         <template #label> Рачун за <b>аконтацију пореза</b> </template>
         <UInput
           @paste="onPasteAccount"
@@ -278,7 +278,7 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="akontacijaBroj" required>
+      <UFormField class="text-[13px] sm:text-sm" name="akontacijaBroj" required>
         <template #label>
           Модел и позив на број за <b>аконтацију пореза</b>
         </template>
@@ -290,7 +290,7 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="zdravstvoRacun" required>
+      <UFormField class="text-[13px] sm:text-sm" name="zdravstvoRacun" required>
         <template #label> Рачун за <b>здравствено осигурање</b> </template>
         <UInput
           @paste="onPasteAccount"
@@ -300,7 +300,7 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="zdravstvoBroj" required>
+      <UFormField class="text-[13px] sm:text-sm" name="zdravstvoBroj" required>
         <template #label>
           Модел и позив на број за <b>здравствено осигурање</b>
         </template>
@@ -312,7 +312,7 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="pioRacun" required>
+      <UFormField class="text-[13px] sm:text-sm" name="pioRacun" required>
         <template #label>
           <div class="inline-flex items-center gap-1">
             Рачун за <b>ПИО</b>
@@ -329,7 +329,7 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="pioBroj" required>
+      <UFormField class="text-[13px] sm:text-sm" name="pioBroj" required>
         <template #label>
           <div class="inline-flex items-center gap-1">
             Модел и позив на број за
@@ -347,7 +347,11 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="nezaposlenostRacun" required>
+      <UFormField
+        class="text-[13px] sm:text-sm"
+        name="nezaposlenostRacun"
+        required
+      >
         <template #label> Рачун за <b>доприносе за незапосленост</b> </template>
         <UInput
           @paste="onPasteAccount"
@@ -357,7 +361,11 @@ defineExpose({
         />
       </UFormField>
 
-      <UFormField name="nezaposlenostBroj" required>
+      <UFormField
+        class="text-[13px] sm:text-sm"
+        name="nezaposlenostBroj"
+        required
+      >
         <template #label>
           Модел и позив на број за <b>доприносе за незапосленост</b>
         </template>
