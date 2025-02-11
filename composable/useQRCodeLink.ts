@@ -3,8 +3,12 @@ import { srLatn } from "date-fns/locale";
 import { useDataStore } from "~/store/useDataStore";
 import { Fee, FeeType } from "~/types/enums";
 
-export default function useQRCodeLink(type: Ref<FeeType>, month: Ref<number>) {
-  const dataStore = useDataStore();
+export default function useQRCodeLink(
+  id: Ref<string>,
+  type: Ref<FeeType>,
+  month: Ref<number>
+) {
+  const dataStore = useDataStore(id.value)();
 
   const feeMultiplier = new Map([
     [FeeType.AKONTACIJA_POREZA, Fee.AKONTACIJA_POREZA],
@@ -14,10 +18,6 @@ export default function useQRCodeLink(type: Ref<FeeType>, month: Ref<number>) {
   ]);
 
   const fee = computed(() => {
-    console.log({
-      osnovica: dataStore.data?.osnovica,
-      feeMultiplier: feeMultiplier.get(type.value),
-    });
     return (
       (dataStore.data?.osnovica || 1) * (feeMultiplier.get(type.value) || 1)
     );
@@ -63,13 +63,8 @@ export default function useQRCodeLink(type: Ref<FeeType>, month: Ref<number>) {
     } ${getYear(new Date())}.`;
 
     if (!dataStore.data) return "";
-    return `K:PR|V:01|C:1|R:${account}|N:Poreska uprava Republike Srbije|I:RSD${amount}|P:${dataStore.data.firma}|SF:153|S:${reason}|RO:${model}`;
+    return `K:PR|V:01|C:1|R:${account}|N:Poreska uprava Republike Srbije|I:RSD${amount}|P:Moja Firma|SF:153|S:${reason}|RO:${model}`;
   });
 
   return link;
 }
-
-// K:PR|V:01|C:1|R:845000000040484987|N:JP EPS BEOGRAD
-// BALKANSKA 13|I:RSD3596,13|P:MRĐO MAČKATOVIĆ
-// ŽUPSKA 13
-// BEOGRAD 6|SF:189|S:UPLATA PO RAČUNU ZA EL. ENERGIJU|RO:97163220000111111111000

@@ -1,3 +1,12 @@
 export default defineAppConfig({
-  ui: {},
+  ui: {
+    colors: {
+      primary: "green",
+    },
+    button: {
+      slots: {
+        base: "cursor-pointer",
+      },
+    },
+  },
 });

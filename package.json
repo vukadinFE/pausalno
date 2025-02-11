@@ -13,6 +13,8 @@
     "@nuxt/ui": "3.0.0-alpha.12",
     "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "0.9.0",
+    "@vueuse/core": "^12.5.0",
+    "@vueuse/nuxt": "12.5.0",
     "axios": "^1.7.9",
     "canvas": "^3.1.0",
     "date-fns": "^4.1.0",

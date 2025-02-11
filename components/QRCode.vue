@@ -4,37 +4,46 @@ import useThemeColor from "~/composable/useThemeColor";
 
 type Props = {
   data: string;
+  logoUrl?: string;
+  color?: string;
 };
 
 const props = defineProps<Props>();
 
 const data = toRef(props, "data");
+const logoUrl = toRef(props, "logoUrl");
+const color = toRef(props, "color");
 
 const qrCodeRef = useTemplateRef("qr-code");
 
 const { isDark } = useThemeColor();
+
+const codeColor = computed(
+  () => color.value || (isDark.value ? "#d1d5dc" : "#1e2939")
+);
 
 const options = computed<Options>(() => ({
   width: 200,
   height: 200,
   type: "svg",
   data: data.value,
-  image: isDark.value ? "/logo-white.svg" : "/logo.svg",
+  image: logoUrl.value || (isDark.value ? "/logo-white.svg" : "/logo.svg"),
   imageOptions: {
     crossOrigin: "anonymous",
     hideBackgroundDots: true,
+    margin: 2,
   },
   dotsOptions: {
-    color: "oklch(0.723 0.219 149.579)",
+    color: codeColor.value,
     type: "rounded",
   },
   cornersSquareOptions: {
     type: "extra-rounded",
-    color: "oklch(0.723 0.219 149.579)",
+    color: codeColor.value,
   },
   cornersDotOptions: {
     type: "dot",
-    color: "oklch(0.723 0.219 149.579)",
+    color: codeColor.value,
   },
   backgroundOptions: {
     color: "transparent",
@@ -57,7 +66,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="qr-code" ref="qr-code"></div>
+  <div class="qr-code text-gr" ref="qr-code"></div>
 </template>
 
 <style>

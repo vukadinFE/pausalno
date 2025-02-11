@@ -1,3 +1,5 @@
+import type { FeeType } from "./enums";
+
 export type TData = {
   firma: string;
   akontacijaRacun: string;
@@ -9,4 +11,11 @@ export type TData = {
   nezaposlenostRacun: string;
   nezaposlenostBroj: string;
   osnovica: number;
+};
+
+export type TState = {
+  [FeeType.AKONTACIJA_POREZA]: boolean;
+  [FeeType.ZDRAVSTVO]: boolean;
+  [FeeType.PIO]: boolean;
+  [FeeType.NEZAPOSLENOST]: boolean;
 };

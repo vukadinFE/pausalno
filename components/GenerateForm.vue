@@ -5,7 +5,12 @@ import useThemeColor from "~/composable/useThemeColor";
 import axios from "axios";
 import useLocalForage from "~/composable/useLocalForage";
 import type { TData } from "~/types/data";
-import { DATA_PATH } from "~/consts";
+
+type Props = {
+  hideButton?: boolean;
+};
+
+defineProps<Props>();
 
 const router = useRouter();
 
@@ -84,6 +89,15 @@ const validate = async (R: string, RO: string) => {
   };
 };
 
+class FormError extends Error {
+  override name: string;
+
+  constructor(name: string, message: string) {
+    super(message);
+    this.name = name;
+  }
+}
+
 const validatePart = async (
   rKey: keyof TData,
   r: string,
@@ -92,14 +106,7 @@ const validatePart = async (
 ) => {
   const validated = await validate(r, ro);
 
-  console.log(validated);
-
   if (validated !== true) {
-    toast.add({
-      title: "Грешка",
-      description: validated.desc,
-      color: "error",
-    });
     if (validated.r) {
       form.value!.setErrors([
         {
@@ -116,61 +123,77 @@ const validatePart = async (
         },
       ]);
     }
-    return false;
+    throw new FormError("Грешка", validated.desc);
   }
-  return true;
 };
 
 const localForage = useLocalForage();
 
+const submitting = ref(false);
+
 async function onSubmit(event: FormSubmitEvent<TData>) {
-  form.value!.clear();
+  try {
+    submitting.value = true;
 
-  // SECTION: Validate akontacija
-  const validateAkontacija = await validatePart(
-    "akontacijaRacun",
-    event.data.akontacijaRacun,
-    "akontacijaBroj",
-    event.data.akontacijaBroj
-  );
-  if (!validateAkontacija) return;
+    // SECTION: Validate akontacija
+    await validatePart(
+      "akontacijaRacun",
+      event.data.akontacijaRacun,
+      "akontacijaBroj",
+      event.data.akontacijaBroj
+    );
 
-  // SECTION: Validate zdravstvo
-  const validateZdravstvo = await validatePart(
-    "zdravstvoRacun",
-    event.data.zdravstvoRacun,
-    "zdravstvoBroj",
-    event.data.zdravstvoBroj
-  );
-  if (!validateZdravstvo) return;
+    // SECTION: Validate zdravstvo
+    await validatePart(
+      "zdravstvoRacun",
+      event.data.zdravstvoRacun,
+      "zdravstvoBroj",
+      event.data.zdravstvoBroj
+    );
 
-  // SECTION: Validate pio
-  const validatePio = await validatePart(
-    "pioRacun",
-    event.data.pioRacun,
-    "pioBroj",
-    event.data.pioBroj
-  );
-  if (!validatePio) return;
+    // SECTION: Validate pio
+    await validatePart(
+      "pioRacun",
+      event.data.pioRacun,
+      "pioBroj",
+      event.data.pioBroj
+    );
 
-  // SECTION: Validate nezaposlenost
-  const validateNezaposlenost = await validatePart(
-    "nezaposlenostRacun",
-    event.data.nezaposlenostRacun,
-    "nezaposlenostBroj",
-    event.data.nezaposlenostBroj
-  );
-  if (!validateNezaposlenost) return;
+    // SECTION: Validate nezaposlenost
+    await validatePart(
+      "nezaposlenostRacun",
+      event.data.nezaposlenostRacun,
+      "nezaposlenostBroj",
+      event.data.nezaposlenostBroj
+    );
 
-  await localForage.setItem(DATA_PATH, { ...event.data });
+    const cName = companyName(event.data.firma);
 
-  router.push("/ips");
+    const storageKey = dataStorage(cName);
 
-  toast.add({
-    title: "Успешно",
-    description: "Подаци су сачувани.",
-    color: "success",
-  });
+    await localForage.setItem(storageKey, {
+      ...event.data,
+    });
+
+    router.push(`/company/${cName}`);
+
+    toast.add({
+      title: "Успешно",
+      description: "Подаци су сачувани.",
+      color: "success",
+    });
+    form.value!.clear();
+  } catch (e) {
+    if (e instanceof FormError) {
+      toast.add({
+        title: e.name,
+        description: e.message,
+        color: "error",
+      });
+    }
+  } finally {
+    submitting.value = false;
+  }
 }
 
 const accountPlaceholder = "840000012345678912";
@@ -211,6 +234,11 @@ const onPastModel = (e: ClipboardEvent) => {
 };
 
 const { color } = useThemeColor();
+
+defineExpose({
+  submit: () => form.value?.submit(),
+  submitting: submitting,
+});
 </script>
 
 <template>
@@ -343,7 +371,7 @@ const { color } = useThemeColor();
         class="w-full"
       />
     </UFormField>
-    <div class="flex justify-end">
+    <div class="flex justify-end" v-if="!hideButton">
       <UButton type="submit" trailing-icon="i-lucide-qr-code">
         Генериши
       </UButton>

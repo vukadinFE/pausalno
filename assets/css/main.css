@@ -1,14 +1,20 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --ui-bg: var(--ui-color-neutral-50);
-  --ui-text: var(--ui-color-neutral-900);
+  --ui-text: var(--ui-color-neutral-500);
+  --ui-border: var(--ui-color-neutral-200);
 }
 
 .dark {
-  --ui-bg: var(--ui-color-neutral-950);
-  --ui-border: var(--ui-color-neutral-900);
+  --ui-bg: var(--ui-color-neutral-900);
+  --ui-border: var(--ui-color-neutral-800);
+  --ui-text: var(--ui-color-neutral-200);
 }
 
 body {
@@ -32,4 +38,8 @@ body {
   --color-primary-800: var(--ui-color-primary-800);
   --color-primary-900: var(--ui-color-primary-900);
   --color-primary-950: var(--ui-color-primary-950);
+}
+
+.fency-bg {
+  @apply relative before:absolute before:top-0 before:start-1/2 before:bg-[url('/landing-pattern-square.svg')] before:bg-no-repeat before:w-full before:h-full before:-z-[1] before:transform before:bg-[50%_50%] before:-translate-x-1/2 dark:before:bg-[url('/landing-pattern-square-dark.svg')] z-[2];
 }
