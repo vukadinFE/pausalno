@@ -2,7 +2,7 @@
 import { UButton } from "#components";
 
 definePageMeta({
-  layout: "home",
+  layout: "fullscreen",
 });
 
 const generateModalOpen = ref(false);
@@ -16,9 +16,7 @@ useServerSeoMeta({
 </script>
 
 <template>
-  <div
-    class="min-h-[100dvh] flex items-center justify-center overflow-hidden fency-bg before:!bg-[50%_70%]"
-  >
+  <HeroWrapper class="fency-bg before:!bg-[50%_70%]">
     <UContainer class="pb-10 pt-(--header-height)">
       <div class="text-center mx-auto">
         <h1
@@ -48,7 +46,7 @@ useServerSeoMeta({
         </div>
       </GenerateModal>
     </UContainer>
-  </div>
+  </HeroWrapper>
 
   <UContainer class="grid grid-cols-[1fr_auto] gap-5">
     <main>

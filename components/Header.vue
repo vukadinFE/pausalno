@@ -25,7 +25,7 @@ const items = computed<NavigationMenuItem[] | NavigationMenuItem[][]>(() => {
     ? {
         label: "Моје фирме",
         icon: "i-lucide-factory",
-        to: "/company",
+        to: "/firme",
       }
     : {
         label: "Додај фирму",
@@ -42,7 +42,7 @@ const items = computed<NavigationMenuItem[] | NavigationMenuItem[][]>(() => {
       {
         label: "Донације",
         icon: "i-lucide-hand-heart",
-        to: "/donations",
+        to: "/donacije",
         class: "text-pink-500",
         slot: "highlighted",
         active: true,

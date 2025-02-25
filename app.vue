@@ -5,5 +5,7 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+
+    <CookieConsent />
   </UApp>
 </template>

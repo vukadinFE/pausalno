@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Donation } from "~/pages/donations.vue";
+import type { Donation } from "~/pages/donacije.vue";
 
 const props = defineProps<Donation>();
 const amount = ref(200);

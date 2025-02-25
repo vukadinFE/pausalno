@@ -114,7 +114,7 @@ const deleteModal = ref(false);
     </div>
 
     <template #footer>
-      <UButton variant="soft" :to="`/company/${companyName(item.firma)}`">
+      <UButton variant="soft" :to="`/firme/${companyName(item.firma)}`">
         Отвори
       </UButton>
     </template>

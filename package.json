@@ -10,9 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ipaat/vue3-tailwind3-cookie-comply": "^1.1.2",
+    "@nuxt/scripts": "0.10.3",
     "@nuxt/ui": "3.0.0-alpha.12",
+    "@nuxthub/core": "0.8.17",
     "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "0.9.0",
+    "@unhead/vue": "^1",
     "@vueuse/core": "^12.5.0",
     "@vueuse/nuxt": "12.5.0",
     "axios": "^1.7.9",
@@ -29,6 +33,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "tailwindcss": "^4.0.3"
+    "tailwindcss": "^4.0.3",
+    "wrangler": "^3.109.3"
   }
 }

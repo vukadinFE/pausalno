@@ -174,7 +174,7 @@ async function onSubmit(event: FormSubmitEvent<TData>) {
       ...event.data,
     });
 
-    router.push(`/company/${cName}`);
+    router.push(`/firme/${cName}`);
 
     toast.add({
       title: "Успешно",
@@ -316,7 +316,7 @@ defineExpose({
         <template #label>
           <div class="inline-flex items-center gap-1">
             Рачун за <b>ПИО</b>
-            <UTooltip text="Пензионо и здравствено осигурање">
+            <UTooltip text="Пензионо и инвалидско осигурање">
               <UIcon name="i-lucide-info" />
             </UTooltip>
           </div>
@@ -334,7 +334,7 @@ defineExpose({
           <div class="inline-flex items-center gap-1">
             Модел и позив на број за
             <b>ПИО</b>
-            <UTooltip text="Пензионо и здравствено осигурање">
+            <UTooltip text="Пензионо и инвалидско осигурање">
               <UIcon name="i-lucide-info" />
             </UTooltip>
           </div>
