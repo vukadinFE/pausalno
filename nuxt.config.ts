@@ -38,18 +38,18 @@ export default defineNuxtConfig({
     "/": {
       prerender: true,
     },
-    "/prijava": {
-      prerender: true,
-    },
+    // "/prijava": {
+    //   prerender: true,
+    // },
     "/firme": {
       prerender: true,
     },
     "/firme/**": {
       ssr: false,
     },
-    "/preduzetnik": {
-      ssr: false,
-    },
+    // "/preduzetnik": {
+    //   ssr: false,
+    // },
     "/donacije": {
       prerender: true,
     },
