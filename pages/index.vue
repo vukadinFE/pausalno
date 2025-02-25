@@ -84,9 +84,7 @@ useServerSeoMeta({
               Попуни формулар
             </UButton>
           </div>
-          <div
-            class="shadow-2xl shadow-(--ui-bg)/15 dark:shadow-white/15 max-w-[400px] rounded"
-          >
+          <div class="max-w-[400px]">
             <img src="/how.png" alt="Како функционише?" class="rounded" />
           </div>
         </div>
@@ -111,10 +109,12 @@ useServerSeoMeta({
               </p>
             </div>
           </div>
-          <div
-            class="shadow-2xl shadow-(--ui-bg)/15 dark:shadow-white/15 max-w-[500px] rounded"
-          >
-            <img src="/isolate.png" alt="Како функционише?" class="rounded" />
+          <div class="max-w-[500px]">
+            <img
+              src="/isolate.png"
+              alt="Како функционише?"
+              class="rounded -mt-4"
+            />
           </div>
         </div>
       </section>
@@ -152,11 +152,7 @@ useServerSeoMeta({
             </div>
           </div>
           <div class="max-w-[400px] rounded">
-            <img
-              src="/beforeAfter.png"
-              alt="Како функционише?"
-              class="rounded"
-            />
+            <img src="/why.png" alt="Како функционише?" class="rounded" />
           </div>
         </div>
       </section>
