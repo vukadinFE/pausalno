@@ -58,12 +58,14 @@ export default function useQRCodeLink(
     const account = accounts.value.get(type.value);
     const model = models.value.get(type.value);
     const amount = fee.value.toFixed(2).toString().replace(".", ",");
+    const company = dataStore.data?.firma || "Moja Firma";
+
     const reason = `${typeReasons.get(type.value)} za ${
       monthName.value
     } ${getYear(new Date())}.`;
 
     if (!dataStore.data) return "";
-    return `K:PR|V:01|C:1|R:${account}|N:Poreska uprava Republike Srbije|I:RSD${amount}|P:Moja Firma|SF:153|S:${reason}|RO:${model}`;
+    return `K:PR|V:01|C:1|R:${account}|N:Poreska uprava Republike Srbije|I:RSD${amount}|P:${company}|SF:153|S:${reason}|RO:${model}`;
   });
 
   return link;
